@@ -2,11 +2,13 @@
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
 import HelloWorld from './components/HelloWorld.vue'
+import Frank from './components/Frank.vue'
 </script>
 
 <template>
   <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + Vite" />
+  <!-- <HelloWorld msg="Hello Vue 3 + Vite" /> -->
+  <Frank />
 </template>
 
 <style>
@@ -19,8 +21,3 @@ import HelloWorld from './components/HelloWorld.vue'
   margin-top: 60px;
 }
 </style>
-// 
-1 2 3 4 
-1235 
-11 22 33 44 
-1122 33 55
