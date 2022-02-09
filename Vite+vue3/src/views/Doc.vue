@@ -1,6 +1,6 @@
 <template>
   <div>
-   <Topnav />
+    <Topnav />
     <div class="content">
       <aside>
         <h2>组件列表</h2>
@@ -17,8 +17,6 @@
           <li>
             <router-link to="/doc/tabs">tabs 组件</router-link>
           </li>
-         
-
         </ol>
       </aside>
       <main>主内容</main>
@@ -34,5 +32,4 @@ export default {
 </script>
 
 <style>
-
 </style>
