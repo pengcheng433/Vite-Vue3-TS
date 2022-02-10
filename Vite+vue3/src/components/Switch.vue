@@ -1,13 +1,22 @@
 <template>
-  <div>switch</div>
+  <div>
+    <p>Switch 的文档</p>
+    <p>Switch 的文档</p>
+    <p>Switch 的文档</p>
+    <p>Switch 的文档</p>
+    <p>Switch 的文档</p>
+    <p>Switch 的文档</p>
+    <p>Switch 的文档</p>
+    <p>Switch 的文档</p>
+    <p>Switch 的文档</p>
+    <p>Switch 的文档</p>
+    <p>Switch 的文档</p>
+  </div>
 </template>
 
 <script lang="ts">
-export default {
-
-}
+export default {};
 </script>
 
 <style>
-
 </style>
