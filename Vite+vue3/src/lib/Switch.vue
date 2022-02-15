@@ -14,7 +14,7 @@ export default {
     // const changValue = (event) => {
     //   y.value = event;
     // };
-    return { y,  };
+    return { y };
   },
 };
 </script>
