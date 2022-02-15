@@ -1,8 +1,5 @@
 <template>
-  <div>
-    <p>Button 的文档</p>
-  
-  </div>
+  <button><slot /></button>
 </template>
 
 <script lang="ts">

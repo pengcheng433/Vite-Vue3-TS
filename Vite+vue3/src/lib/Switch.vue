@@ -4,7 +4,7 @@
 
 <script lang="ts">
 import { ref } from "@vue/reactivity";
-import Switch from "../components/Switch.vue";
+import Switch from "../components/SwitchDemo.vue";
 export default {
   components: {
     Switch,
