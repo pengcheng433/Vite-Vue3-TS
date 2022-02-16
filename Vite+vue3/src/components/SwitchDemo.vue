@@ -1,5 +1,7 @@
 <template>
-  <button :class="{ checked: value }" @click="toggle"><span></span></button>
+  <button class="ui-switch" :class="{ 'ui-checked': value }" @click="toggle">
+    <span></span>
+  </button>
 </template>
 
 <script lang="ts">
@@ -17,10 +19,10 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 $h: 22px;
 $h2: $h - 4px;
-button {
+.ui-switch {
   height: $h;
   width: $h * 2;
   border: none;
@@ -37,7 +39,7 @@ button {
     border-radius: $h2 / 2;
     transition: all 250ms;
   }
-  &.checked {
+  &.ui-checked {
     background: #1890ff;
     > span {
       left: calc(100% - #{$h2} - 2px);
@@ -52,7 +54,7 @@ button {
       width: $h2 + 4px;
     }
   }
-  &.checked:active {
+  &.ui-checked:active {
     > span {
       width: $h2 + 4px;
       margin-left: -4px;

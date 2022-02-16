@@ -1,5 +1,5 @@
 <template>
-  <button class="btn" :class="`theme-${theme}`"><slot /></button>
+  <button class="ui-btn" :class="`ui-theme-${theme}`"><slot /></button>
 </template>
 
 <script lang="ts">
@@ -13,13 +13,13 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped >
+<style lang="scss"  >
 $h: 32px;
 $border-color: #d9d9d9;
 $color: #333;
 $blue: #40a9ff;
 $radius: 4px;
-.btn {
+.ui-btn {
   box-sizing: border-box;
   height: $h;
   padding: 0 12px;
