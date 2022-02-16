@@ -2,9 +2,10 @@
   <div>Butoon 示例</div>
   <h1>示例1</h1>
   <div>
-    <Button size="small" @mouseover="onclick" @focus="onclick" @click="onclick"
-      >按钮</Button
-    >
+    <Button>按钮</Button>
+    <Button theme="button">按钮</Button>
+    <Button theme="link">按钮</Button>
+    <Button theme="text">按钮</Button>
   </div>
 </template>
 
