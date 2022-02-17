@@ -1,5 +1,6 @@
 <template>
-  <button class="ui-button" :class="classes">
+  <button :disabled="disabled" class="ui-button" :class="classes">
+    <span v-if="loading" class="ui-loadingIndicator"></span>
     <slot />
   </button>
 </template>
@@ -15,13 +16,27 @@ export default {
       type: String,
       default: "normal",
     },
+    level: {
+      type: String,
+      default: "normal",
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
+    loading: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props) {
-    const { theme, size } = props;
+    const { theme, size, level } = props;
+
     const classes = computed(() => {
       return {
         [`ui-theme-${theme}`]: theme,
         [`ui-size-${size}`]: size,
+        [`ui-level-${level}`]: level,
       };
     });
     return { classes };
@@ -34,6 +49,8 @@ $border-color: #d9d9d9;
 $color: #333;
 $blue: #40a9ff;
 $radius: 4px;
+$red: red;
+$gray: gray;
 .ui-button {
   box-sizing: border-box;
   height: $h;
@@ -89,6 +106,89 @@ $radius: 4px;
     font-size: 12px;
     height: 20px;
     padding: 0 4px;
+  }
+
+  &.ui-theme-button {
+    &.ui-level-main {
+      background: $blue;
+      color: white;
+      border-color: $blue;
+      &:hover,
+      &:focus {
+        background: darken($blue, 10%);
+        border-color: darken($blue, 10%);
+      }
+    }
+    &.ui-level-danger {
+      background: $red;
+      border-color: $red;
+      color: white;
+      &:hover,
+      &:focus {
+        background: darken($red, 10%);
+        border-color: darken($red, 10%);
+      }
+    }
+  }
+  &.ui-theme-link {
+    &.ui-level-danger {
+      color: $red;
+      &:hover,
+      &:focus {
+        color: darken($red, 10%);
+      }
+    }
+  }
+  &.ui-theme-text {
+    &.ui-level-main {
+      color: $blue;
+      &:hover,
+      &:focus {
+        color: darken($blue, 10%);
+      }
+    }
+    &.ui-level-danger {
+      color: $red;
+      &:hover,
+      &:focus {
+        color: darken($red, 10%);
+      }
+    }
+  }
+  &.ui-theme-button {
+    &[disabled] {
+      cursor: not-allowed;
+      color: $gray;
+      &:hover {
+        border-color: $gray;
+      }
+    }
+  }
+  &.ui-theme-link,
+  &.ui-theme-text {
+    &[disabled] {
+      cursor: not-allowed;
+      color: $gray;
+    }
+  }
+  > .ui-loadingIndicator {
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    margin-right: 4px;
+    border-radius: 8px;
+    border-color: $blue $blue $blue transparent;
+    border-style: solid;
+    border-width: 2px;
+    animation: ui-spin 1s infinite linear;
+  }
+}
+@keyframes ui-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
 </style>

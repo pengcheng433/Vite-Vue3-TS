@@ -25,6 +25,47 @@
       <Button size="small" theme="text">小小小</Button>
     </div>
   </div>
+  <h1>示例3</h1>
+
+  <div>
+    <div>
+      <div>
+        <Button level="main" size="big">大大大</Button>
+        <Button>普普通</Button>
+        <Button level="danger" size="small">小小小</Button>
+      </div>
+      <div>
+        <Button level="main" theme="link" size="big">大大大</Button>
+        <Button theme="link">普普通</Button>
+        <Button level="danger" size="small" theme="link">小小小</Button>
+      </div>
+      <div>
+        <Button level="main" size="big" theme="text">大大大</Button>
+        <Button theme="text">普普通</Button>
+        <Button level="danger" size="small" theme="text">小小小</Button>
+      </div>
+    </div>
+  </div>
+  <h1>示例4</h1>
+  <div>
+    <div>
+      <div>
+        <Button disabled>禁用按钮</Button>
+        <Button theme="link" :disabled="true">禁用链接按钮</Button>
+        <Button theme="text" disabled>禁用按钮</Button>
+      </div>
+    </div>
+  </div>
+  <h1>示例5</h1>
+  <div>
+    <div>
+      <div>
+        <Button loading>加载中</Button>
+        <Button theme="link" loading>loading</Button>
+        <Button theme="text" loading>loading</Button>
+      </div>
+    </div>
+  </div>
 </template>
 <script lang="ts">
 import Button from "../lib/Button.vue";
