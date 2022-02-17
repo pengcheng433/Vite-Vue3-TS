@@ -1,20 +1,23 @@
 <template>
   <h1>对话框示例</h1>
   <Button @click="openDialog">打开对话框</Button>
-  <Dialog />
+  <Dialog :visibly="visibly" />
 </template>
 
 <script lang="ts">
+import { ref } from "@vue/reactivity";
 import Button from "../lib/Button.vue";
 import Dialog from "../lib/Dialog.vue";
 
 export default {
   components: { Button, Dialog },
   setup() {
+    const visibly = ref(false);
     const openDialog = () => {
-      console.log(1);
+      visibly.value=!visibly.value
     };
-    return { openDialog };
+
+    return { visibly,openDialog };
   },
 };
 </script>
