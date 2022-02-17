@@ -3,7 +3,7 @@ import { createWebHashHistory, createRouter } from "vue-router"
 import Home from "./views/Home.vue"
 import Doc from "./views/Doc.vue"
 import Switch from "./lib/Switch.vue"
-import Button from "./lib/Button.vue"
+import Button from "./components/ButtonDemo.vue"
 import Dialog from "./components/Dialog.vue"
 import Tabs from "./components/Tabs.vue"
 const history = createWebHashHistory()
