@@ -61,8 +61,15 @@
     <div>
       <div>
         <Button loading>加载中</Button>
-        <Button theme="link" loading>loading</Button>
-        <Button theme="text" loading>loading</Button>
+        <Button>加载完毕</Button>
+      </div>
+      <div>
+        <Button theme="link" loading>加载中</Button>
+        <Button theme="link">加载完毕</Button>
+      </div>
+      <div>
+        <Button theme="text" loading>加载中</Button>
+        <Button theme="text">加载完毕</Button>
       </div>
     </div>
   </div>
