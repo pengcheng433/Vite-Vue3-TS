@@ -2,13 +2,19 @@
   <h1>对话框示例</h1>
   <Button @click="openDialog1">打开1对话框</Button>
   <Button @click="openDialog2">打开2对话框</Button>
-  <Dialog v-model:visibly="visibly1" />
+  <Dialog v-model:visibly="visibly1" :CANCEL="exit" :OK="OK" />
   <Dialog
     v-model:visibly="visibly2"
     :closeOnClickOverlay="true"
     :CANCEL="exit"
     :OK="OK"
-  />
+  >
+    <template #title>插槽标题</template>
+    <template #main>
+      <p>插槽内容1</p>
+      <p>插槽内容2</p>
+    </template>
+  </Dialog>
 </template>
 
 <script lang="ts">

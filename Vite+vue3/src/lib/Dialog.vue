@@ -7,11 +7,14 @@
     <div class="ui-dialog-wrapper">
       <div class="ui-dialog">
         <header>
-          标题 <span @click="close" class="ui-dialog-close"></span>
+          <slot name="title"> 标题 </slot>
+          <span @click="close" class="ui-dialog-close"></span>
         </header>
         <main>
-          <p>第一行字</p>
-          <p>第二行字</p>
+          <slot name="main">
+            <p>默认插槽内容1</p>
+            <p>默认插槽内容2</p>
+          </slot>
         </main>
         <footer>
           <Button @click="OK" level="main">OK</Button>
