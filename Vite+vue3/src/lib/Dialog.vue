@@ -1,16 +1,21 @@
 <template>
   <template v-if="visibly">
-    <div class="ui-dialog-overlay"></div>
+    <div
+      class="ui-dialog-overlay"
+      @click="closeOnClickOverlay == false ? close() : false"
+    ></div>
     <div class="ui-dialog-wrapper">
       <div class="ui-dialog">
-        <header>标题</header>
+        <header>
+          标题 <span @click="close" class="ui-dialog-close"></span>
+        </header>
         <main>
           <p>第一行字</p>
           <p>第二行字</p>
         </main>
         <footer>
-          <Button level="main">OK</Button>
-          <Button>CANCEL</Button>
+          <Button @click="OK" level="main">OK</Button>
+          <Button @click="CANCEL">CANCEL</Button>
         </footer>
       </div>
     </div>
@@ -28,6 +33,33 @@ export default {
       type: Boolean,
       default: false,
     },
+    closeOnClickOverlay: {
+      type: Boolean,
+      default: false,
+    },
+    OK: {
+      type: Function,
+    },
+    CANCEL: {
+      type: Function,
+    },
+  },
+  setup(props, context) {
+    const close = () => {
+      context.emit("update:visibly", false);
+    };
+
+    const OK = () => {
+      props.OK();
+      close();
+    };
+    const CANCEL = () => {
+      context.emit("CANCEL");
+      props.CANCEL();
+      close();
+    };
+
+    return { close, OK, CANCEL };
   },
 };
 </script>
