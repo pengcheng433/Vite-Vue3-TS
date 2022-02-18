@@ -1,27 +1,29 @@
 <template>
   <template v-if="visibly">
-    <div
-      class="ui-dialog-overlay"
-      @click="closeOnClickOverlay == false ? close() : false"
-    ></div>
-    <div class="ui-dialog-wrapper">
-      <div class="ui-dialog">
-        <header>
-          <slot name="title"> 标题 </slot>
-          <span @click="close" class="ui-dialog-close"></span>
-        </header>
-        <main>
-          <slot name="main">
-            <p>默认插槽内容1</p>
-            <p>默认插槽内容2</p>
-          </slot>
-        </main>
-        <footer>
-          <Button @click="OK" level="main">OK</Button>
-          <Button @click="CANCEL">CANCEL</Button>
-        </footer>
+    <Teleport to="body">
+      <div
+        class="ui-dialog-overlay"
+        @click="closeOnClickOverlay == false ? close() : false"
+      ></div>
+      <div class="ui-dialog-wrapper">
+        <div class="ui-dialog">
+          <header>
+            <slot name="title"> 标题 </slot>
+            <span @click="close" class="ui-dialog-close"></span>
+          </header>
+          <main>
+            <slot name="main">
+              <p>默认插槽内容1</p>
+              <p>默认插槽内容2</p>
+            </slot>
+          </main>
+          <footer>
+            <Button @click="OK" level="main">OK</Button>
+            <Button @click="CANCEL">CANCEL</Button>
+          </footer>
+        </div>
       </div>
-    </div>
+    </Teleport>
   </template>
 </template>
 
