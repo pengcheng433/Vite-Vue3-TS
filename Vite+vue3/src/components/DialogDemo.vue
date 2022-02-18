@@ -1,5 +1,5 @@
 <template>
-  <h1>对话框示例</h1>
+  <h1>对话框示例1</h1>
   <Button @click="openDialog1">打开1对话框</Button>
   <Button @click="openDialog2">打开2对话框</Button>
   <Button @click="openDialog3">打开3对话框</Button>
@@ -39,13 +39,15 @@
       </Dialog>
     </template>
   </Dialog>
+  <h1>对话框示例2</h1>
+  <Button @click="showDialog">打开5对话框</Button>
 </template>
 
 <script lang="ts">
 import { ref } from "@vue/reactivity";
 import Button from "../lib/Button.vue";
 import Dialog from "../lib/Dialog.vue";
-
+import { openDialog } from "../lib/openDialog";
 export default {
   components: { Button, Dialog },
   setup() {
@@ -65,12 +67,27 @@ export default {
     const openDialog4 = () => {
       visibly4.value = !visibly4.value;
     };
+
+    const showDialog = () => {
+      openDialog({
+        title: "openDialog标题",
+        content: "openDialog你好 content",
+        ok() {
+          console.log("ok");
+        },
+        cancel() {
+          console.log("cancel");
+        },
+      });
+    };
+
     const exit = () => {
       console.log("EXIT");
     };
     const OK = () => {
       console.log("OK");
     };
+
     return {
       visibly1,
       visibly2,
@@ -80,6 +97,7 @@ export default {
       openDialog2,
       openDialog3,
       openDialog4,
+      showDialog,
       exit,
       OK,
     };
