@@ -1,5 +1,5 @@
 <template>
-  tba
+  <slot></slot>
 </template>
 
 <script>
