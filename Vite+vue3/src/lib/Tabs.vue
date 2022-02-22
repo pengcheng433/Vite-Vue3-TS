@@ -5,11 +5,17 @@
         class="ui-tabs-nav-item"
         :class="{ selected: t == selected }"
         v-for="(t, index) in titles"
+        :ref="
+          (el) => {
+            if (el) navItems[index] = el;
+          }
+        "
         :key="index"
         @click="changgeTab(t)"
       >
         {{ t }}
       </div>
+      <div ref="indicatorItem" class="ui-tabs-nav-indicator"></div>
     </div>
     <div class="ui-tabs-content">
       <component
@@ -23,13 +29,21 @@
 </template>
 
 <script lang="ts">
-import { computed } from "@vue/runtime-core";
+import { computed, onMounted, ref } from "@vue/runtime-core";
 import Tab from "./Tab.vue";
 export default {
   props: {
     selected: String,
   },
   setup(props, context) {
+    const navItems = ref<HTMLDivElement[]>([]);
+    const indicatorItem = ref<HTMLDivElement>(null);
+    onMounted(() => {
+      const div = navItems.value;
+      const res = div.filter((div) => div.classList.contains("selected"))[0];
+      const { width } = res.getBoundingClientRect();
+      indicatorItem.value.style.width = width + "px";
+    });
     const Vnode = context.slots.default();
     Vnode.forEach((element) => {
       if (element.type != Tab) {
@@ -49,7 +63,7 @@ export default {
       context.emit("update:selected", t);
     };
 
-    return { titles, Vnode, changgeTab };
+    return { titles, Vnode, changgeTab, navItems, indicatorItem };
   },
 };
 </script>
@@ -63,6 +77,7 @@ $border-color: #d9d9d9;
     display: flex;
     color: $color;
     border-bottom: 1px solid $border-color;
+    position: relative;
     &-item {
       padding: 8px 0;
       margin: 0 16px;
@@ -73,6 +88,14 @@ $border-color: #d9d9d9;
       &.selected {
         color: $blue;
       }
+    }
+    &-indicator {
+      position: absolute;
+      height: 3px;
+      background: $blue;
+      left: 0;
+      bottom: -1px;
+      width: 100px;
     }
   }
   &-content {
