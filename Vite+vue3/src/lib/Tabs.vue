@@ -1,6 +1,6 @@
 <template>
   <div class="ui-tabs">
-    <div class="ui-tabs-nav">
+    <div class="ui-tabs-nav" ref="container">
       <div
         class="ui-tabs-nav-item"
         :class="{ selected: t == selected }"
@@ -29,7 +29,13 @@
 </template>
 
 <script lang="ts">
-import { computed, onMounted, ref } from "@vue/runtime-core";
+import {
+  computed,
+  onMounted,
+  onUpdated,
+  ref,
+  watchEffect,
+} from "@vue/runtime-core";
 import Tab from "./Tab.vue";
 export default {
   props: {
@@ -38,12 +44,23 @@ export default {
   setup(props, context) {
     const navItems = ref<HTMLDivElement[]>([]);
     const indicatorItem = ref<HTMLDivElement>(null);
-    onMounted(() => {
+    const container = ref<HTMLDivElement>(null);
+
+    const indicatorItemChangge = () => {
       const div = navItems.value;
       const res = div.filter((div) => div.classList.contains("selected"))[0];
       const { width } = res.getBoundingClientRect();
       indicatorItem.value.style.width = width + "px";
-    });
+
+      const { left: left1 } = container.value.getBoundingClientRect();
+      const { left: left2 } = res.getBoundingClientRect();
+      const left = left2 - left1;
+      indicatorItem.value.style.left = left + "px";
+    };
+
+    onMounted(indicatorItemChangge);
+
+    onUpdated(indicatorItemChangge);
     const Vnode = context.slots.default();
     Vnode.forEach((element) => {
       if (element.type != Tab) {
@@ -63,7 +80,7 @@ export default {
       context.emit("update:selected", t);
     };
 
-    return { titles, Vnode, changgeTab, navItems, indicatorItem };
+    return { titles, Vnode, changgeTab, navItems, indicatorItem, container };
   },
 };
 </script>
@@ -96,6 +113,7 @@ $border-color: #d9d9d9;
       left: 0;
       bottom: -1px;
       width: 100px;
+      transition: all 0.25s;
     }
   }
   &-content {

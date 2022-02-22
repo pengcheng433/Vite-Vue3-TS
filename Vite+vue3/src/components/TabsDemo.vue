@@ -13,7 +13,7 @@ import Tabs from "../lib/Tabs.vue";
 export default {
   components: { Tab, Tabs },
   setup() {
-    const selectedTitle = ref("导航一");
+    const selectedTitle = ref("导航二");
     return { selectedTitle };
   },
 };
