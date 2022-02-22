@@ -18,12 +18,7 @@
       <div ref="indicatorItem" class="ui-tabs-nav-indicator"></div>
     </div>
     <div class="ui-tabs-content">
-      <component
-        class="ui-tabs-content-item"
-        :class="{ selected: c.props.title == selected }"
-        v-for="c in Vnode"
-        :is="c"
-      />
+      <component :is="Current" :key="Current.props.title" />
     </div>
   </div>
 </template>
@@ -71,8 +66,8 @@ export default {
       return tag.props.title;
     });
     const Current = computed(() => {
-      Vnode.filter((item) => {
-        item.props.title == props.selected;
+      return Vnode.filter((item) => {
+        return item.props.title == props.selected;
       })[0];
     });
 
@@ -80,7 +75,15 @@ export default {
       context.emit("update:selected", t);
     };
 
-    return { titles, Vnode, changgeTab, navItems, indicatorItem, container };
+    return {
+      titles,
+      Vnode,
+      changgeTab,
+      navItems,
+      Current,
+      indicatorItem,
+      container,
+    };
   },
 };
 </script>
@@ -118,12 +121,12 @@ $border-color: #d9d9d9;
   }
   &-content {
     padding: 8px 0;
-    &-item {
-      display: none;
-      &.selected {
-        display: block;
-      }
-    }
+    // &-item {
+    //   display: none;
+    //   &.selected {
+    //     display: block;
+    //   }
+    // }
   }
 }
 </style>
