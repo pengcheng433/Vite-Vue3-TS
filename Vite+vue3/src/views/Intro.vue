@@ -1,17 +1,17 @@
 <template>
-  <div>
-    <Intromd />
-  </div>
+  <Intro />
 </template>
 
-<script >
-import Intromd from "../markdown/intro.md";
+<script>
+import Intro from "../markdown/intro.md";
 export default {
   components: {
-    Intromd,
+    Intro,
+  },
+  data() {
+    return {
+      Intro,
+    };
   },
 };
 </script>
-
-<style>
-</style>

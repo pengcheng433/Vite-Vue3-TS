@@ -8,7 +8,7 @@
 import { ref } from "@vue/reactivity";
 export default {
   props: {
-    value: Boolean,
+    value: { type: Boolean },
   },
   setup(props, context) {
     const toggle = () => {

@@ -9,7 +9,7 @@ export default {
   components: {
     Switch,
   },
-  setup(props, context) {
+  setup() {
     const boolean = ref(false);
     // const changValue = (event) => {
     //   y.value = event;

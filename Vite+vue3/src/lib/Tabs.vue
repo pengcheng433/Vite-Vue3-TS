@@ -7,7 +7,7 @@
         v-for="(t, index) in titles"
         :ref="
           (el) => {
-            if (el) navItems[index] = el;
+            if (el) navItems[index]= el;
           }
         "
         :key="index"
