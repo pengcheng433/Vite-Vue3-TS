@@ -1,14 +1,11 @@
 <template>
   <template v-if="visibly">
     <Teleport to="body">
-      <div
-        class="ui-dialog-overlay"
-        @click="closeOnClickOverlay == false ? close() : false"
-      ></div>
+      <div class="ui-dialog-overlay" @click="closeOnClickOverlay == false ? close() : false"></div>
       <div class="ui-dialog-wrapper">
         <div class="ui-dialog">
           <header>
-            <slot name="title"> 标题 </slot>
+            <slot name="title">标题</slot>
             <span @click="close" class="ui-dialog-close"></span>
           </header>
           <main>
@@ -30,7 +27,7 @@
 
 <script lang="ts">
 import Button from "../lib/Button.vue";
-
+import { watch } from "vue";
 export default {
   components: { Button },
   props: {
@@ -56,13 +53,22 @@ export default {
 
     const OK = () => {
       props.OK();
-      close();
+      // close();
     };
     const CANCEL = () => {
       context.emit("CANCEL");
       props.CANCEL();
       close();
     };
+    watch(
+      () => props.visibly,
+      (newProps) => {
+
+        const res = newProps == true ? document.querySelector('body').setAttribute('style', 'overflow:hidden;') : document.querySelector('body').setAttribute('style', '')
+
+      }
+    );
+
 
     return { close, OK, CANCEL };
   },

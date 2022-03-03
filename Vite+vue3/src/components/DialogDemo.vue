@@ -1,109 +1,136 @@
 <template>
-  <h1>对话框示例1</h1>
-  <Button @click="openDialog1">打开1对话框</Button>
-  <Button @click="openDialog2">打开2对话框</Button>
-  <Button @click="openDialog3">打开3对话框</Button>
-  <Dialog v-model:visibly="visibly1" :CANCEL="exit" :OK="OK" />
-  <Dialog
-    v-model:visibly="visibly2"
-    :closeOnClickOverlay="true"
-    :CANCEL="exit"
-    :OK="OK"
-  >
-    <template #title>插槽标题</template>
-    <template #main>
-      <p>插槽内容1</p>
-      <p>插槽内容2</p>
-    </template>
-  </Dialog>
-  <Dialog
-    v-model:visibly="visibly3"
-    :closeOnClickOverlay="true"
-    :CANCEL="exit"
-    :OK="OK"
-  >
-    <template #title>插槽标题</template>
-    <template #main>
-      <Button @click="openDialog4">打开4对话框</Button>
-      <Dialog
-        v-model:visibly="visibly4"
-        :closeOnClickOverlay="true"
-        :CANCEL="exit"
-        :OK="OK"
-      >
-        <template #title>对话框内的对话框</template>
-        <template #main>
-          <p>对话框内的对话框</p>
-          <p>对话框内的对话框</p>
-        </template>
-      </Dialog>
-    </template>
-  </Dialog>
-  <h1>对话框示例2</h1>
-  <Button @click="showDialog">打开5对话框</Button>
+  <h1>对话框组件示例</h1>
+  <div class="demo">
+    <h2>常规用法</h2>
+    <div class="demo-component">
+      <Dialog1Demo />
+    </div>
+    <div class="demo-actions">
+      <Button>查看代码</Button>
+    </div>
+    <div class="demo-code">
+      <pre
+        class="language-html"
+        v-html="Prism.highlight(Dialog1DemoD, Prism.languages.html, 'html')"
+      ></pre>
+    </div>
+  </div>
+  <div class="demo">
+    <h2>插槽用法</h2>
+    <div class="demo-component">
+      <Dialog2Demo />
+    </div>
+    <div class="demo-actions">
+      <Button>查看代码</Button>
+    </div>
+    <div class="demo-code">
+      <pre
+        class="language-html"
+        v-html="Prism.highlight(Dialog2DemoD, Prism.languages.html, 'html')"
+      ></pre>
+    </div>
+  </div>
+  <div class="demo">
+    <h2>遮盖层设置</h2>
+    <div class="demo-component">
+      <Dialog3Demo />
+    </div>
+    <div class="demo-actions">
+      <Button>查看代码</Button>
+    </div>
+    <div class="demo-code">
+      <pre
+        class="language-html"
+        v-html="Prism.highlight(Dialog3DemoD, Prism.languages.html, 'html')"
+      ></pre>
+    </div>
+  </div>
+  <div class="demo">
+    <h2>函数启动对话框</h2>
+    <div class="demo-component">
+      <Dialog4Demo />
+    </div>
+    <div class="demo-actions">
+      <Button>查看代码</Button>
+    </div>
+    <div class="demo-code">
+      <pre
+        class="language-html"
+        v-html="Prism.highlight(Dialog4DemoD, Prism.languages.html, 'html')"
+      ></pre>
+    </div>
+  </div>
+
+  <div class="demo">
+    <h2>嵌套对话框</h2>
+    <div class="demo-component">
+      <Dialog5Demo />
+    </div>
+    <div class="demo-actions">
+      <Button>查看代码</Button>
+    </div>
+    <div class="demo-code">
+      <pre
+        class="language-html"
+        v-html="Prism.highlight(Dialog5DemoD, Prism.languages.html, 'html')"
+      ></pre>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
-import { ref } from "@vue/reactivity";
 import Button from "../lib/Button.vue";
 import Dialog from "../lib/Dialog.vue";
-import { openDialog } from "../lib/openDialog";
+import Dialog1Demo from "./Dialog1Demo.vue";
+import Dialog1DemoD from "./Dialog1Demo.vue?raw";
+import Dialog2Demo from "./Dialog2Demo.vue";
+import Dialog2DemoD from "./Dialog2Demo.vue?raw";
+import Dialog3Demo from "./Dialog3Demo.vue";
+import Dialog3DemoD from "./Dialog3Demo.vue?raw";
+import Dialog4Demo from "./Dialog4Demo.vue";
+import Dialog4DemoD from "./Dialog4Demo.vue?raw";
+import Dialog5Demo from "./Dialog5Demo.vue";
+import Dialog5DemoD from "./Dialog5Demo.vue?raw";
+
+import "prismjs/themes/prism-okaidia.css";
+const Prism = (window as any).Prism;
+import "prismjs";
+
 export default {
-  components: { Button, Dialog },
+  components: { Button, Dialog, Dialog1Demo, Dialog2Demo, Dialog3Demo, Dialog4Demo, Dialog5Demo },
   setup() {
-    const visibly1 = ref(false);
-    const openDialog1 = () => {
-      visibly1.value = !visibly1.value;
-    };
-    const visibly2 = ref(false);
-    const openDialog2 = () => {
-      visibly2.value = !visibly2.value;
-    };
-    const visibly3 = ref(false);
-    const openDialog3 = () => {
-      visibly3.value = !visibly3.value;
-    };
-    const visibly4 = ref(false);
-    const openDialog4 = () => {
-      visibly4.value = !visibly4.value;
-    };
-
-    const showDialog = () => {
-      openDialog({
-        title: "openDialog标题",
-        content: "openDialog你好 content",
-        ok() {
-          console.log("ok");
-        },
-        cancel() {
-          console.log("cancel");
-        },
-      });
-    };
-
-    const exit = () => {
-      console.log("EXIT");
-    };
-    const OK = () => {
-      console.log("OK");
-    };
-
     return {
-      visibly1,
-      visibly2,
-      visibly3,
-      visibly4,
-      openDialog1,
-      openDialog2,
-      openDialog3,
-      openDialog4,
-      showDialog,
-      exit,
-      OK,
+      Prism, Dialog1DemoD, Dialog2DemoD, Dialog3DemoD, Dialog4DemoD, Dialog5DemoD
     };
   },
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+$border-color: #d9d9d9;
+.demo {
+  border: 1px solid $border-color;
+  margin: 16px 0 32px;
+  > h2 {
+    font-size: 20px;
+    padding: 8px 16px;
+    border-bottom: 1px solid $border-color;
+  }
+  &-component {
+    padding: 16px;
+  }
+  &-actions {
+    padding: 8px 16px;
+    border-top: 1px dashed $border-color;
+  }
+  &-code {
+    padding: 8px 16px;
+    border-top: 1px dashed $border-color;
+    > pre {
+      line-height: 1.1;
+      font-family: Consolas, "Courier New", Courier, monospace;
+      margin: 0;
+    }
+  }
+}
 </style>

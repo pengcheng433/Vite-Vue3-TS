@@ -5,7 +5,9 @@
       <aside v-if="asideVisible">
         <h2>文档</h2>
         <ol>
-          <li><router-link to="/doc/intro">介绍</router-link></li>
+          <li>
+            <router-link to="/doc/intro">介绍</router-link>
+          </li>
           <li>
             <router-link to="/doc/install">安装</router-link>
           </li>
@@ -29,7 +31,9 @@
           </li>
         </ol>
       </aside>
-      <main><router-view /></main>
+      <main>
+        <router-view />
+      </main>
     </div>
   </div>
 </template>
@@ -83,7 +87,7 @@ aside {
   left: 0;
   padding-top: 70px;
   height: 100%;
-
+  z-index: 5;
   > h2 {
     margin-bottom: 4px;
     padding: 0 16px;
