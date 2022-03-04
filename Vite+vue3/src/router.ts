@@ -6,6 +6,7 @@ import Switch from "./components/SwitchDemo.vue"
 import Button from "./components/ButtonDemo.vue"
 import Dialog from "./components/DialogDemo.vue"
 import Tabs from "./components/TabsDemo.vue"
+import Input from "./components/InputDemo.vue"
 
 import Intro from "./views/Intro.vue"
 import GetStarted from "./views/GetStarted.vue"
@@ -28,6 +29,7 @@ export const Router = createRouter(
                     { path: 'button', component: Button },
                     { path: 'dialog', component: Dialog },
                     { path: 'tabs', component: Tabs },
+                    { path: 'input', component: Input },
 
                 ]
 
