@@ -1,6 +1,6 @@
 <template>
   <button
-    v-bind="$attrs"
+   
     class="ui-switch"
     :class="{
       'ui-checked': value,

@@ -3,18 +3,16 @@
     <div class="ui-tabs-nav" ref="container">
       <div
         class="ui-tabs-nav-item"
-        :class="{ selected: t == selected }"
+        :class="{ selected: t.props.title == selected, 'ui-tabs-nav-item-disabled': t?.props?.hasOwnProperty('disabled') }"
         v-for="(t, index) in titles"
         :ref="
           (el) => {
-            if (el) navItems[index]= el;
+            if (el) navItems[index] = el;
           }
         "
         :key="index"
         @click="changgeTab(t)"
-      >
-        {{ t }}
-      </div>
+      >{{ t.props.title }}</div>
       <div ref="indicatorItem" class="ui-tabs-nav-indicator"></div>
     </div>
     <div class="ui-tabs-content">
@@ -63,7 +61,8 @@ export default {
       }
     });
     const titles = Vnode.map((tag) => {
-      return tag.props.title;
+
+      return tag;
     });
     const Current = computed(() => {
       return Vnode.filter((item) => {
@@ -72,7 +71,10 @@ export default {
     });
 
     const changgeTab = (t) => {
-      context.emit("update:selected", t);
+      if (!t?.props?.hasOwnProperty('disabled')) {
+
+        context.emit("update:selected", t.props.title);
+      }
     };
 
     return {
@@ -108,6 +110,10 @@ $border-color: #d9d9d9;
       &.selected {
         color: $blue;
       }
+    }
+    &-item-disabled {
+      color: #00000040;
+      cursor: not-allowed;
     }
     &-indicator {
       position: absolute;

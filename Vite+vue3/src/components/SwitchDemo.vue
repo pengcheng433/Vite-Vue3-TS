@@ -8,10 +8,12 @@
         <Switch1Demo />
       </div>
       <div class="demo-actions">
-        <Button>查看代码</Button>
+        <Button v-if="!routineVisibly" @click="openroutine">查看代码</Button>
+        <Button v-else @click="openroutine">隐藏代码</Button>
       </div>
       <div class="demo-code">
         <pre
+          v-if="routineVisibly"
           class="language-html"
           v-html="Prism.highlight(Switch1DemoD, Prism.languages.html, 'html')"
         ></pre>
@@ -23,10 +25,12 @@
         <Switch2Demo />
       </div>
       <div class="demo-actions">
-        <Button>查看代码</Button>
+        <Button v-if="!disabledVisibly" @click="opendisabled">查看代码</Button>
+        <Button v-else @click="opendisabled">隐藏代码</Button>
       </div>
       <div class="demo-code">
         <pre
+          v-if="disabledVisibly"
           class="language-html"
           v-html="Prism.highlight(Switch2DemoD, Prism.languages.html, 'html')"
         ></pre>
@@ -38,10 +42,12 @@
         <Switch3Demo />
       </div>
       <div class="demo-actions">
-        <Button>查看代码</Button>
+        <Button v-if="!textVisibly" @click="opentext">查看代码</Button>
+        <Button v-else @click="opentext">隐藏代码</Button>
       </div>
       <div class="demo-code">
         <pre
+          v-if="textVisibly"
           class="language-html"
           v-html="Prism.highlight(Switch3DemoD, Prism.languages.html, 'html')"
         ></pre>
@@ -53,10 +59,12 @@
         <Switch4Demo />
       </div>
       <div class="demo-actions">
-        <Button>查看代码</Button>
+        <Button v-if="!loadingVisibly" @click="openloading">查看代码</Button>
+        <Button v-else @click="openloading">隐藏代码</Button>
       </div>
       <div class="demo-code">
         <pre
+          v-if="loadingVisibly"
           class="language-html"
           v-html="Prism.highlight(Switch4DemoD, Prism.languages.html, 'html')"
         ></pre>
@@ -93,14 +101,37 @@ export default {
   },
 
   setup() {
-    const bool = ref(false);
+    const routineVisibly = ref(true);
+    const disabledVisibly = ref(false);
+    const textVisibly = ref(false);
+    const loadingVisibly = ref(false);
+
+    const openroutine = () => {
+      routineVisibly.value = !routineVisibly.value;
+    };
+    const opendisabled = () => {
+      disabledVisibly.value = !disabledVisibly.value;
+    };
+    const opentext = () => {
+      textVisibly.value = !textVisibly.value;
+    };
+    const openloading = () => {
+      loadingVisibly.value = !loadingVisibly.value;
+    };
     return {
       Switch4DemoD,
       Switch3DemoD,
-      bool,
       Switch2DemoD,
       Switch1DemoD,
       Prism,
+      routineVisibly,
+      disabledVisibly,
+      textVisibly,
+      loadingVisibly,
+      openroutine,
+      opendisabled,
+      opentext,
+      openloading,
     };
   },
 };
@@ -112,6 +143,7 @@ $border-color: #d9d9d9;
 .demo {
   border: 1px solid $border-color;
   margin: 16px 0 32px;
+  border-radius: 0.3em;
   > h2 {
     font-size: 20px;
     padding: 8px 16px;
