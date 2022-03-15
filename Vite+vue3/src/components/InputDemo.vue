@@ -18,14 +18,28 @@
     </div>
   </div>
   <div class="demo">
-    <h2>常规用法</h2>
+    <h2>支持size</h2>
     <div class="demo-component">
-      <Input v-model:value="value" placeholder="请输入" size="big"></Input>
-      <br />
-      <Input v-model:value="value" placeholder="请输入" size="noraml"></Input>
-      <br />
-
-      <Input v-model:value="value" placeholder="请输入" size="small"></Input>
+      <div class="mb">
+        <Input placeholder="large" size="large"></Input>
+      </div>
+      <div class="mb">
+        <Input placeholder="default"></Input>
+      </div>
+      <div class="mb">
+        <Input placeholder="mini" size="mini"></Input>
+      </div>
+    </div>
+    <div class="demo-actions">
+      <Button v-if="!routineVisibly" @click="openroutine">查看代码</Button>
+      <Button v-else @click="openroutine">隐藏代码</Button>
+    </div>
+    <div class="demo-code"></div>
+  </div>
+  <div class="demo">
+    <h2>支持密码</h2>
+    <div class="demo-component">
+      <Input  v-model:value="value" show-password placeholder="请输入密码"></Input>
     </div>
     <div class="demo-actions"></div>
     <div class="demo-code"></div>
@@ -66,6 +80,9 @@ $border-color: #d9d9d9;
   }
   &-component {
     padding: 16px;
+    .mb {
+      margin-bottom: 10px;
+    }
   }
   &-actions {
     padding: 8px 16px;
