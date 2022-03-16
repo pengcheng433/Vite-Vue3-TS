@@ -1,5 +1,5 @@
 <template>
-  <div class="ui-input-div">
+  <div class="ui-input-div" v-if="istextarea !== 'textarea'">
     <input
       class="ui-input"
       :class="`ui-input-size-${size}`"
@@ -15,8 +15,13 @@
       </svg>
     </div>
   </div>
+  <div class="ui-textarea-area" v-else>
+    <textarea class="ui-textarea" :value="value" :placeholder="placeholder" :rows="rows"></textarea>
+  </div>
 </template>
+<!-- 4w  
 
+ -->
 <script lang="ts">
 import { ref } from "@vue/reactivity";
 import { onBeforeMount, onMounted } from "vue";
@@ -30,6 +35,11 @@ export default {
       type: String,
       default: "default",
     },
+    rows: {
+      type: String || Number,
+      default: 4,
+
+    }
 
   },
   setup(props, context) {
@@ -39,6 +49,7 @@ export default {
       context.emit("update:value", e.target.value);
     };
     let ispassword = context.attrs.hasOwnProperty("show-password")
+    let istextarea = context.attrs.hasOwnProperty("type") == true ? context.attrs.type : ""
 
 
     const ispasswordVisibly = ref<Boolean>(false);
@@ -48,17 +59,18 @@ export default {
     })
     const showpass = () => {
       ispasswordVisibly.value = !ispasswordVisibly.value
-    
+
 
     }
 
-    return { placeholder, iptChange, ispassword, showpass, ispasswordVisibly };
+    return { placeholder, iptChange, ispassword, showpass, ispasswordVisibly, istextarea };
   },
 };
 </script>
 
 <style  lang="scss">
 $border-blue: #40a9ff;
+$border-white: #d9d9d9;
 .ui-input-div {
   width: 260px;
   position: relative;
@@ -79,7 +91,7 @@ $border-blue: #40a9ff;
     line-height: 1.5715;
     background-color: #fff;
     background-image: none;
-    border: 1px solid #d9d9d9;
+    border: 1px solid $border-white;
     border-radius: 2px;
     transition: all 0.3s;
     &:hover {
@@ -109,10 +121,35 @@ $border-blue: #40a9ff;
     margin: auto 0px;
     display: flex;
     align-items: center;
+    cursor: pointer;
     top: 0;
     svg {
       width: 14px;
       height: 14px;
+    }
+  }
+}
+.ui-textarea-area {
+  width: 400px;
+  margin-bottom: 10px;
+  .ui-textarea {
+    width: 100%;
+    height: auto;
+    min-height: 32px;
+    vertical-align: bottom;
+    transition: all 0.3s, height 0s;
+    border: 1px solid $border-white;
+    border-radius: 4px;
+    resize: vertical;
+    &:hover {
+      border-color: $border-blue;
+      border-right-width: 1px;
+    }
+    &:focus {
+      border-color: $border-blue;
+      box-shadow: 0 0 0 1px $border-blue;
+      border-right-width: 1px;
+      outline: 0;
     }
   }
 }

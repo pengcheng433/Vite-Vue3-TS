@@ -39,7 +39,18 @@
   <div class="demo">
     <h2>支持密码</h2>
     <div class="demo-component">
-      <Input  v-model:value="value" show-password placeholder="请输入密码"></Input>
+      <Input v-model:value="value" show-password placeholder="请输入密码"></Input>
+    </div>
+    <div class="demo-actions"></div>
+    <div class="demo-code"></div>
+  </div>
+
+  <div class="demo">
+    <h2>支持文本</h2>
+    <div class="demo-component">
+      <Input v-model:value="value" type="textarea" placeholder="请输入文本"></Input>
+
+      <Input v-model:value="value" type="textarea" :rows="6"  placeholder="请输入文本"></Input>
     </div>
     <div class="demo-actions"></div>
     <div class="demo-code"></div>
