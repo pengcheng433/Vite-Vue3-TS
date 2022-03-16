@@ -41,7 +41,10 @@
     <div class="demo-component">
       <Input v-model:value="value" show-password placeholder="请输入密码"></Input>
     </div>
-    <div class="demo-actions"></div>
+    <div class="demo-actions">
+      <Button v-if="!routineVisibly" @click="openroutine">查看代码</Button>
+      <Button v-else @click="openroutine">隐藏代码</Button>
+    </div>
     <div class="demo-code"></div>
   </div>
 
@@ -50,9 +53,12 @@
     <div class="demo-component">
       <Input v-model:value="value" type="textarea" placeholder="请输入文本"></Input>
 
-      <Input v-model:value="value" type="textarea" :rows="6"  placeholder="请输入文本"></Input>
+      <Input v-model:value="value" type="textarea" :rows="6" placeholder="请输入文本"></Input>
     </div>
-    <div class="demo-actions"></div>
+    <div class="demo-actions">
+      <Button v-if="!routineVisibly" @click="openroutine">查看代码</Button>
+      <Button v-else @click="openroutine">隐藏代码</Button>
+    </div>
     <div class="demo-code"></div>
   </div>
 </template>

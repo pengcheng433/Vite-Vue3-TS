@@ -133,6 +133,7 @@ $border-white: #d9d9d9;
   width: 400px;
   margin-bottom: 10px;
   .ui-textarea {
+    padding: 10px;
     width: 100%;
     height: auto;
     min-height: 32px;
