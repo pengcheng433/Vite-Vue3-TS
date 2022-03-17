@@ -3,13 +3,10 @@
     <div class="topnavAndBanner">
       <Topnav />
       <div class="banner">
-        <h1>UI框架</h1>
+        <h1>Psyduck-UI框架</h1>
         <h2>一个厉害的 UI 框架</h2>
         <p class="actions">
-          <a
-            href="https://github.com/pengcheng433/Vite-Vue3-TS/tree/master/Vite%2Bvue3"
-            >GitHub</a
-          >
+          <a href="https://github.com/pengcheng433/Vite-Vue3-TS/tree/master/Vite%2Bvue3">GitHub</a>
           <router-link to="/doc">开始</router-link>
         </p>
       </div>
@@ -18,21 +15,21 @@
       <ul>
         <li>
           <svg>
-            <use xlink:href="#icon-vue"></use>
+            <use xlink:href="#icon-vue" />
           </svg>
           <h3>基于 Vue 3</h3>
           <p>骄傲地使用了 Vue 3 Composition API</p>
         </li>
         <li>
           <svg>
-            <use xlink:href="#icon-ts"></use>
+            <use xlink:href="#icon-ts" />
           </svg>
           <h3>基于 TypeScript</h3>
-          <p>源代码采用 TypeScript 书写（非严格检查）</p>
+          <p>源代码采用 TypeScript 书写</p>
         </li>
         <li>
           <svg>
-            <use xlink:href="#icon-light"></use>
+            <use xlink:href="#icon-light" />
           </svg>
           <h3>代码易读</h3>
           <p>每个组件的源代码都极其简洁</p>

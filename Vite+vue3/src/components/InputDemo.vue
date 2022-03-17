@@ -1,5 +1,5 @@
 <template>
-  <h1>输入框组件示例</h1>
+  <h1>Input组件示例</h1>
   <div class="demo">
     <h2>常规用法</h2>
     <div class="demo-component">
