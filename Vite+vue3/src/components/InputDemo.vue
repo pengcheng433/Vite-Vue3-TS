@@ -3,7 +3,7 @@
   <div class="demo">
     <h2>常规用法</h2>
     <div class="demo-component">
-      <Input v-model:value="value" placeholder="请输入"></Input>
+      <Input1Demo></Input1Demo>
     </div>
     <div class="demo-actions">
       <Button v-if="!routineVisibly" @click="openroutine">查看代码</Button>
@@ -13,72 +13,103 @@
       <pre
         v-if="routineVisibly"
         class="language-html"
-        v-html="Prism.highlight(Dialog1DemoD, Prism.languages.html, 'html')"
+        v-html="Prism.highlight(Input1DemoD, Prism.languages.html, 'html')"
       ></pre>
     </div>
   </div>
   <div class="demo">
     <h2>支持size</h2>
     <div class="demo-component">
-      <div class="mb">
-        <Input placeholder="large" size="large"></Input>
-      </div>
-      <div class="mb">
-        <Input placeholder="default"></Input>
-      </div>
-      <div class="mb">
-        <Input placeholder="mini" size="mini"></Input>
-      </div>
+      <Input2Demo />
     </div>
     <div class="demo-actions">
-      <Button v-if="!routineVisibly" @click="openroutine">查看代码</Button>
-      <Button v-else @click="openroutine">隐藏代码</Button>
+      <Button v-if="!sizeVisibly" @click="opensize">查看代码</Button>
+      <Button v-else @click="opensize">隐藏代码</Button>
     </div>
-    <div class="demo-code"></div>
+    <div class="demo-code">
+      <pre
+        v-if="sizeVisibly"
+        class="language-html"
+        v-html="Prism.highlight(Input2DemoD, Prism.languages.html, 'html')"
+      ></pre>
+    </div>
   </div>
   <div class="demo">
     <h2>支持密码</h2>
     <div class="demo-component">
-      <Input v-model:value="value" show-password placeholder="请输入密码"></Input>
+      <Input3Demo />
     </div>
     <div class="demo-actions">
-      <Button v-if="!routineVisibly" @click="openroutine">查看代码</Button>
-      <Button v-else @click="openroutine">隐藏代码</Button>
+      <Button v-if="!passwordVisibly" @click="openpassword">查看代码</Button>
+      <Button v-else @click="openpassword">隐藏代码</Button>
     </div>
-    <div class="demo-code"></div>
+    <div class="demo-code">
+      <pre
+        v-if="passwordVisibly"
+        class="language-html"
+        v-html="Prism.highlight(Input3DemoD, Prism.languages.html, 'html')"
+      ></pre>
+    </div>
   </div>
 
   <div class="demo">
-    <h2>支持文本</h2>
+    <h2>支持文本框</h2>
     <div class="demo-component">
-      <Input v-model:value="value" type="textarea" placeholder="请输入文本"></Input>
-
-      <Input v-model:value="value" type="textarea" :rows="6" placeholder="请输入文本"></Input>
+      <Input4Demo />
     </div>
     <div class="demo-actions">
-      <Button v-if="!routineVisibly" @click="openroutine">查看代码</Button>
-      <Button v-else @click="openroutine">隐藏代码</Button>
+      <Button v-if="!textareaVisibly" @click="opentextarea">查看代码</Button>
+      <Button v-else @click="opentextarea">隐藏代码</Button>
     </div>
-    <div class="demo-code"></div>
+    <div class="demo-code">
+      <pre
+        v-if="textareaVisibly"
+        class="language-html"
+        v-html="Prism.highlight(Input4DemoD, Prism.languages.html, 'html')"
+      ></pre>
+    </div>
   </div>
 </template>
 <script lang="ts">
 import Button from "../lib/Button.vue";
 import Input from "../lib/Input.vue";
+import Input1Demo from "./Input1Demo.vue";
+import Input1DemoD from "./Input1Demo.vue?raw";
+import Input2Demo from "./Input2Demo.vue";
+import Input2DemoD from "./Input2Demo.vue?raw";
+import Input3Demo from "./Input3Demo.vue";
+import Input3DemoD from "./Input3Demo.vue?raw";
+import Input4Demo from "./Input4Demo.vue";
+import Input4DemoD from "./Input4Demo.vue?raw";
 import { ref } from "@vue/reactivity";
-
+import "prismjs";
+import "prismjs/themes/prism-okaidia.css";
+const Prism = (window as any).Prism;
 export default {
   components: {
     Button,
     Input,
+    Input1Demo, Input2Demo, Input3Demo, Input4Demo
   },
   setup() {
-    const value = ref<any>("默认文本值");
     const routineVisibly = ref(false);
+    const sizeVisibly = ref(false);
+    const passwordVisibly = ref(false);
+    const textareaVisibly = ref(false);
     const openroutine = () => {
       routineVisibly.value = !routineVisibly.value;
     };
-    return { value, openroutine, openroutine };
+    const opensize = () => {
+      sizeVisibly.value = !sizeVisibly.value;
+    };
+    const openpassword = () => {
+      passwordVisibly.value = !passwordVisibly.value;
+    };
+
+    const opentextarea = () => {
+      textareaVisibly.value = !textareaVisibly.value;
+    };
+    return { Prism, routineVisibly, sizeVisibly, passwordVisibly, textareaVisibly, openroutine, opensize, openpassword, opentextarea, Input1DemoD, Input2DemoD, Input3DemoD, Input4DemoD };
   },
 };
 </script>
@@ -97,9 +128,6 @@ $border-color: #d9d9d9;
   }
   &-component {
     padding: 16px;
-    .mb {
-      margin-bottom: 10px;
-    }
   }
   &-actions {
     padding: 8px 16px;
