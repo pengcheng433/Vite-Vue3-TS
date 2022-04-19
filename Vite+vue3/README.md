@@ -1,3 +1,5 @@
+目前还不支持npm和yarn的安装，因为名字被占用了，后续会更新掉。
+NPM and yarn installation is not supported at present, because the name is occupied and will be updated later.
 # Vue 3 + Typescript + Vite
 
 This template should help get you started developing with Vue 3 and Typescript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
